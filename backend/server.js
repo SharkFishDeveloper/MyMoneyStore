@@ -2,7 +2,8 @@ const app = require("./app.js");
 const dotenv = require("dotenv");
 const connecttoDatabase = require("./config/database.js");
 
-
+//! why it is not closing server
+//*When this event is triggered, your server should shut down immediately without gracefully closing.
 process.on("uncaughtException",(err)=>{
     console.log(`Error:${err.message}`);
     console.log("Uncaught exception");
@@ -12,7 +13,6 @@ process.on("uncaughtException",(err)=>{
 
 
 dotenv.config({path: "backend/config/config.env"});
-//console.log(process.env.DB_URL);
 //* connecting to database(atlas)
 connecttoDatabase();
 
