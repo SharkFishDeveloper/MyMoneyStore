@@ -21,7 +21,7 @@ next();
 exports.isAdmin = (...role)=>{
     return (req,res,next)=>{
         if(!role.includes(req.user.role)){
-            return next(new ErrorHandler(`Role: ${req.user.role} if not allowed to access this resource`,403))
+            return next(new ErrorHandler(`Role: ${req.user.role} is not allowed to access this resource`,403))
         }
         next();
     }
