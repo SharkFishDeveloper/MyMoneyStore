@@ -15,7 +15,7 @@ const productSchema = new mongoose.Schema({
         required:[true,"Please enter product price"],
         maxLength:[6,"Price cannot increase more..."]
     },
-    rating:{
+    ratings:{
         type:Number,
         default:0
     },
@@ -38,12 +38,17 @@ const productSchema = new mongoose.Schema({
         required:[5,"Stock cannot be in 6 figures"],
         default:10,
     },
-    NumberofReviews:{
+    numberofReviews:{
         type:Number,
         default:0
     },
     reviews:[
         {
+            user:{
+                type:mongoose.Schema.ObjectId,
+                ref:"User",
+                required:true
+            },
             name:{
                 type:String,
                 required:true
@@ -58,6 +63,11 @@ const productSchema = new mongoose.Schema({
             }
         }
     ],
+    user:{
+        type:mongoose.Schema.ObjectId,
+        ref:"User",
+        required:true
+    },
     createdAt:{
         type:Date,
         default:Date.now
