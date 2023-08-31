@@ -1,17 +1,30 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "./Home.css";
 import Product from "./Product.jsx";
+import MetaDate from "../visible/MetaData.jsx";
+import { Provider, useSelector } from 'react-redux';
+import { fetchAllProducts } from '../../actions/productActions.js';
+import { UseSelector,useDispatch } from 'react-redux';
+import Loader from '../Loader/Loader';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+
+
 const Home = () => {
+  const dispatch = useDispatch();
+  const {loading,products,error,totalProducts} = useSelector((state)=>state.products);
+  useEffect(()=>{
+    dispatch(fetchAllProducts());
+    if (error) {
+      toast.error(error);
+    }
+  },[dispatch,error]);
 
-
-  const product = {
-    name:"PLay station",
-    images:[{url:"https://www.reliancedigital.in/medias/Sony-Playstation5-Gaming-Consoles-491936180-23?context=bWFzdGVyfGltYWdlc3w5NDM4fGltYWdlL2pwZWd8aW1hZ2VzL2hmMC9oNWIvOTQ1NDMwNzgzNTkzNC5qcGd8YmU1NWE0Zjg1MjdkZGQ3MDQ3MzU4MzMwZWZkNzMzMzJkODViYzQ1MGRkODk3YWM4MGYwNWRhYjEyMTljNjhmZQ"}],
-    price:"50000",
-    _id:"Shahzeb"
-  }
   return (
     <>
+    {loading? <Loader/>:<>
+    <MetaDate title={"Ecommerse"}/>
     <div className="welcomeScreen">
        <div id='leftScreen'>
        <h1> World's finest products at the touch of your fingertips.
@@ -26,16 +39,19 @@ const Home = () => {
     </div>
     <h2 className="featuredProducts">Featured products</h2>
     <div className='container' id='container'>
-      <Product product={product}/>
-      <Product product={product}/>
-      <Product product={product}/>
-      <Product product={product}/>
-      <Product product={product}/>
-      <Product product={product}/>
-      <Product product={product}/>
-      <Product product={product}/>
-      
-    </div>
+      {totalProducts}
+      {products && products.map(products=>(<Product product={products}/>))}
+    </div></>}
+    <ToastContainer position="bottom-center"
+  autoClose={5000}
+  hideProgressBar={false}
+  newestOnTop={false}
+  closeOnClick
+  rtl={false}
+  pauseOnFocusLoss
+  draggable
+  pauseOnHover
+  theme="light"/>
     </>
   )
 }

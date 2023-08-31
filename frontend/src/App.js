@@ -7,6 +7,7 @@ import {BrowserRouter as Router,Route,Routes} from "react-router-dom";
 import WebFont from "webfontloader";
 import { useEffect } from 'react';
 import Home from "./component/Home/Home.jsx";
+import Loader from './component/Loader/Loader.jsx';
 
 
 function App() {

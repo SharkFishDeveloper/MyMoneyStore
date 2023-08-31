@@ -22,11 +22,13 @@ const productSchema = new mongoose.Schema({
     images:[{
         public_id:{
             type:String,
-            required:true
+            required:true,
+            default:"s"
         },
         url:{
             type:String,
-            required:true
+            required:true,
+            default:"s"
         },
     }],
     category:{
