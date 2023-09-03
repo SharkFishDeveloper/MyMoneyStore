@@ -78,6 +78,10 @@ const productSchema = new mongoose.Schema({
         type:String,
         required:true,
         default:"This is summary of this book"
+    },
+    real:{
+        type:String,
+        default:false
     }
 });
 

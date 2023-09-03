@@ -1,12 +1,19 @@
-import {combineReducers,applyMiddleware} from "redux";
+//import {combineReducers,applyMiddleware} from "redux";
+
+//import thunk from "redux-thunk";
+//import {composeWithDevTools} from "redux-devtools-extension";
+//import productDetailsReducer from "./reducers/productReducer.js";
+//import { productReducer, productDetailsReducer } from './reducers/productReducer.js';
+//import productsReducer from "./reducers/productReducer.js";
+//import productDetailsReducer from "./reducers/productReducer.js";
+//import productsReducer from "./reducers/productReducer.js";
 import {configureStore} from "@reduxjs/toolkit";
-import thunk from "redux-thunk";
-import {composeWithDevTools} from "redux-devtools-extension";
-import productReducer from "./reducers/productReducer.js";
+import { productDetailsReducer, productsReducer } from "./reducers/productReducer.js";
 
 const store = configureStore({
     reducer:{
-        products:productReducer,
+        products: productsReducer.reducer,
+        productDetails: productDetailsReducer.reducer,
     }
 });
 

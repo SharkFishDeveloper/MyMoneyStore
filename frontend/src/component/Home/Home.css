@@ -8,11 +8,12 @@
 }
 #leftScreen h1{
     margin: 5vmax 5vmax 2vmax 5vmax;
-    font:600 2.2vmax "Roboto";
+    font:600 3vmax "Roboto";
 }
 #leftScreen p{
     margin: 5vmax;
     font:200 1.3vmax "Roboto";
+    line-height: 1.6;
 }
 #leftScreen h2{
     margin: 5vmax;
