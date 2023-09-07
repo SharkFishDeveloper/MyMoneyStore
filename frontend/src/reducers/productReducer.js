@@ -9,7 +9,8 @@ export const productsReducer = createSlice({
         products: [],
         error: null,
         totalProducts: 0,
-        resultPerPage:10
+        resultPerPage:5,
+        filteredProductsCount:0
       },
     reducers:{
        all_products_request:(state,action)=>{
@@ -22,6 +23,7 @@ export const productsReducer = createSlice({
         state.products=action.payload.products;
         state.totalProducts = action.payload.totalProducts;
         state.resultPerPage = action.payload.resultPerPage;
+        state.filteredProductsCount = action.payload.filteredProductsCount;
        },
        got_all_products_failed:(state,action)=>{
         state.loading=false;

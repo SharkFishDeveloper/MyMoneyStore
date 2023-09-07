@@ -16,7 +16,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const {loading,products,error,totalProducts} = useSelector((state)=>state.products);
   useEffect(()=>{
-    dispatch(fetchAllProducts());
+    dispatch(fetchAllProducts({}));
     if (error) {
       toast.error(error);
       dispatch(clear_errors());
@@ -43,16 +43,6 @@ const Home = () => {
       {totalProducts}
       {products && products.map(products=>(<Product product={products} key={products._id}/>))}
     </div></>}
-    {/* <ToastContainer position="bottom-center"
-  autoClose={5000}
-  hideProgressBar={false}
-  newestOnTop={false}
-  closeOnClick
-  rtl={false}
-  pauseOnFocusLoss
-  draggable
-  pauseOnHover
-  theme="light"/> */}
     </>
   )
 }

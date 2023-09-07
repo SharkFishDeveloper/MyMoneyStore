@@ -20,17 +20,35 @@ exports.createProduct = catchAsyncErrors(
 //* getting all products
 exports.getAllProducts= catchAsyncErrors(
     async (req,res,next)=>{
-        
-        const resultPerPage = 10;
+        const resultPerPage = 2;
+        //const totalProducts = await Product.countDocuments();
+        // const apiFeatures = new ApiFeatures(Product.find(),req.query).search().filter().howManyPages(resultPerPage);
+
+        //  let products = await apiFeatures.query;
+        //  let filteredProductsCount = products.length;
+        // apiFeatures.howManyPages(resultPerPage);
+        // products = await apiFeatures.query;
+        const apiFeatures = new ApiFeatures(Product.find(), req.query).search().filter();
+        // let products = await apiFeatures.query; 
+        // apiFeatures.howManyPages(resultPerPage);
+        // let filteredProductsCount = products.length;
+        //  products = await apiFeatures.query;
+        // Only execute the query once
+        let filteredProductsCount = await Product.countDocuments(apiFeatures.query.getFilter());
+
+        // Apply pagination on top of the filters
+        apiFeatures.howManyPages(resultPerPage);
+        let products = await apiFeatures.query;
+
         const totalProducts = await Product.countDocuments();
-        const apiFeatures = new ApiFeatures(Product.find(),req.query).search().filter().howManyPages(resultPerPage);
-        const products = await apiFeatures.query;
-    
+        
+        //!understand how above method works
         res.status(200).json({
             success:true,
             products,
             totalProducts,
-            resultPerPage
+            resultPerPage,
+            filteredProductsCount
         });
     }
 );

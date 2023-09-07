@@ -10,6 +10,7 @@ import ReviewCard from "./ReviewCard.jsx";
 import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import MetaData from '../visible/MetaData';
 
 
 
@@ -38,6 +39,7 @@ const ProductDetails = ({match}) => {
     <>
     {loading||error? <Loader/>:
     <>
+    <MetaData title={product.name}/>
     <div className="productDetails">
             <div className='carouselContainer'>
               <Carousel className='carousel'>

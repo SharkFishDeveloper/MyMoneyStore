@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import "./Search.css";
 import { useNavigate } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
+import MetaData from '../visible/MetaData';
 
 
 const Search = ({}) => {
@@ -14,8 +15,6 @@ const Search = ({}) => {
             
              //history.push(`/products/${keyword}`);
              navigate(`/products/${keyword}`);
-            // const  navigate  = useNavigation(); 
-            // navigate(`/products/${keyword}`);
         }else{
             navigate(`/products`);
             //navigate(`/products`);
@@ -24,6 +23,7 @@ const Search = ({}) => {
     }
   return (
     <div className="box">
+        <MetaData title="Search"/>
         <div>
         <form className="searchBox" onSubmit={searchProducts}>
             <input type="text" 
