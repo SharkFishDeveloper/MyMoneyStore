@@ -1,17 +1,23 @@
-const sendToken = (user,statusCode,res)=>{
-    const token = user.jwtToken();
+
+const sendToken = async (user,statusCode,res)=>{
+    const token = await user.jwtToken();
 
     const options={
-        expiresIn: new Date(
-            Date.now()+process.env.COOKIE_EXPIRES_IN*24*60*60*1000
+        expires: new Date(
+            Date.now()+(process.env.COOKIE_EXPIRES_IN*24*60*60*1000)
         ),
-        httpOnly:true
+        httpOnly:true,
+        secure:true,
     }
-
-    res.status(statusCode).cookie("token",token,options).json({
+    console.log("Sending token to browser");
+    if(res.cookie('token',token,options)){
+        console.log("Sent cookie");
+    }
+    res.status(statusCode).json({
         success:true,
         user,
         token
     });
+
 };
 module.exports = sendToken;

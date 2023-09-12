@@ -11,6 +11,7 @@ import "../util/paginationBox.css"
 import Slider  from '@mui/material/Slider';
 import Typography from '@mui/material/Typography';
 import MetaData from '../visible/MetaData';
+import { useNavigate } from 'react-router-dom';
 
 const Products = () => {
 

@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
-const Header = () => {
+const Header = ({isAuthenticated}) => {
   
   return (
-    <nav className="navbar navbar-expand bg-body-tertiary">
+
+    <nav className="navbar navbar-expand bg-body-tertiary" style={{ position: 'relative' }}>
       <div className="container-fluid">
         <Link className="navbar-brand" to="/" style={{ fontWeight: 'bold' }}>Ecommerse</Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,8 +25,10 @@ const Header = () => {
               <Link className="nav-link disabled">About</Link>
             </li>
           </ul>
+           {!isAuthenticated &&  <Link className="nav-link " to="/register" style={{margin:8}}>Register</Link>}
+           {/* {isAuthenticated &&  <FontAwesomeIcon icon={faUser} size="1x"  className="me-4" onClick={() => <UserAccount user={user}/>} />}   */}
             <Link to="/search">
-            <button className="btn btn-outline-success" type="submit">
+            <button className="btn btn-outline-success" type="submit" >
               Search 
             </button></Link>
         </div>

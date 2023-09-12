@@ -4,17 +4,20 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/usermodel.js");
 
 exports.isAuthenticated = catchAsyncErrors(async(req,res,next)=>{
-    const {token} = req.cookies;
-    console.log(token);
-//* how this token is reading cookies
+    const token = req.cookies.token;
+    if(!token){
+         console.log(`Cannot read token`);
+    }
+    console.log(`Reading token form browser ${token}`);
 
 if(!token){
     return next(new ErrorHandler("PLease login first",401));
 }
 const decodedId = jwt.verify(token,process.env.JWT_SECRETKEY);
-
+console.log(`Reading token form browser ${token}`);
 req.user = await User.findById(decodedId.id);//* assigns req to req.user!!
 //*important
+console.log(`Middle ware 1 finished`);
 next();
 });
 

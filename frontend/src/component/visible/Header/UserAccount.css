@@ -1,0 +1,60 @@
+#profileImage{ 
+    cursor: pointer;
+    position: static; 
+    width: 3vw;
+    height: 3vw; 
+   border-radius: 50%;
+   border: 0.3px solid grey; 
+   margin-left: 95vw;
+}
+
+.userAccountModal {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 400px; /* or any desired width */
+    width: 100%;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+
+.userAccountModal button {
+    margin-right: 10px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #2196F3;
+    color: white;
+    transition: background-color 0.3s;
+    margin: 1rem;
+}
+
+.userAccountModal button:hover {
+    background-color: #176DB3;
+}
+
+.userAccountModal button:last-child {
+    margin-right: 0;
+}
+
+.userImageContainer {
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    align-items: center;   /* Center children horizontally */
+    justify-content: flex-start; /* Start children from the top */
+    gap: 10px; /* Spacing between children (in this case, between image and name) */
+}
+
+.userImageContainer img {
+    width: 3rem; /* Or whatever width you want */
+    height: 3rem;
+    border-radius: 100%; /* To make the image rounded */
+    object-fit: cover;
+    border: 1px solid grey; /* To maintain image's aspect ratio */
+}
+
+.userImageContainer p {
+    /* Styles for the name */
+    margin: 0;
+    font-weight: bold;
+}

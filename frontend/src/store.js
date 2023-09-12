@@ -9,19 +9,15 @@
 //import productsReducer from "./reducers/productReducer.js";
 import {configureStore} from "@reduxjs/toolkit";
 import { productDetailsReducer, productsReducer } from "./reducers/productReducer.js";
+import { userReducer } from "./reducers/userReduces.js";
 
 const store = configureStore({
     reducer:{
         products: productsReducer.reducer,
         productDetails: productDetailsReducer.reducer,
+        user:userReducer.reducer
     }
 });
 
 
 export default store;
-
- //const middleware = [thunk];
-
-// const store = configureStore(
-//     reducer,
-// );
