@@ -2,7 +2,7 @@
 import {configureStore} from "@reduxjs/toolkit";
 import { productDetailsReducer, productsReducer } from "./reducers/productReducer.js";
 import { forgotPasswordReducer, profileReducer, userReducer } from "./reducers/userReduces.js";
-import { cartReducer } from "./reducers/cartReducer.js";
+import { cartReducer, myOrdersReducer } from "./reducers/cartReducer.js";
 import { orderReducer } from "./reducers/orderReducer.js";
 
 let initialState={
@@ -20,7 +20,8 @@ const store = configureStore({
         profile:profileReducer.reducer,
         forgotpassword:forgotPasswordReducer.reducer,
         cart:cartReducer.reducer,
-        newOrder:orderReducer.reducer
+        newOrder:orderReducer.reducer,
+        myOrders:myOrdersReducer.reducer
     },
     preloadedState:initialState
 });

@@ -11,7 +11,7 @@ const OrderPlaced = () => {
           <Link to="/products">
             <FontAwesomeIcon icon={faShoppingCart} className="icon" />
         Continue shopping</Link>
-          <Link to="order/me">
+          <Link to="orders">
             <FontAwesomeIcon icon={faList} className="icon" />View orders </Link>
         </div>
       );

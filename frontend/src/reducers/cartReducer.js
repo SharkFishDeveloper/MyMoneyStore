@@ -35,4 +35,34 @@ export const cartReducer = createSlice({
 
 });
 
+
+export const myOrdersReducer = createSlice({
+    name:"myOrders",
+    initialState:{
+        orderHistory:[],
+        orderHistoryLoading:false,
+        ordersHistoryError:null
+    },
+    reducers:{
+        my_orders_request:(state,action)=>{
+            state.orderHistoryLoading=true;
+        },
+        my_orders_request_success:(state,action)=>{
+            state.orderHistoryLoading=false;
+            state.orderHistory=action.payload
+        },
+        my_orders_fail:(state,action)=>{
+            state.ordersHistoryError=action.payload;
+            state.orderHistoryLoading=false;
+        },
+        clear_orderHistory_error:(state,action)=>{
+            state.ordersHistoryError=null;
+            state.orderHistoryLoading=false;
+        }
+    }
+});
+
+
 export const {add_to_cart_request,remove_from_cart,save_shipping_info} = cartReducer.actions;
+
+export const {my_orders_request,my_orders_fail,my_orders_request_success,clear_orderHistory_error} = myOrdersReducer.actions;

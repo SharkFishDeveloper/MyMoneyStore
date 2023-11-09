@@ -27,6 +27,7 @@ import axios from 'axios';
 import Payment from "./component/Cart/Payment.jsx";
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import MyOrders from "./component/Order/MyOrders.jsx";
 
 function App() {
 
@@ -84,6 +85,8 @@ function App() {
    {setStripeApiKey && <Route exact path='/process/payment' element={<ConfirmOrderTemp stripeApiPromise={stripeKey} stripeApiKey={stripeApiKey}/> } />}
 
    <Route exact path='/orderPlaced' element={<OrderPlaced/>}/>
+
+   <Route exact path='/orders' element={<MyOrders/>}/>
 
    </Routes>
    <Footer/>
