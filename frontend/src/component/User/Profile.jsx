@@ -4,35 +4,42 @@ import {Link} from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Loader from '../Loader/Loader';
 import { useNavigate } from 'react-router-dom';
+import "./Profile.css";
+
 
 const Profile = () => {
+
     const navigate = useNavigate();
-    const {user,isAuthenticated,isLoading} = useSelector(state=>state.user);
-    console.log(user);
+    const {user,isAuthenticated,isLoading=false} = useSelector(state=>state.user);
+    console.log('User from Redux:', user);
+
 
     useEffect(()=>{
-        if(!isAuthenticated){
-            navigate('/');
+        if(user==null){
+            navigate('/products');
         }
-    },[isAuthenticated]);
-    console.log(user);
+    },[user,isAuthenticated]);
+
 
   return (
     
     isLoading ? <Loader/>:
     <>
-    {/* <MetaData title={user.user.name}/> */}
+    <MetaData title={user.detailsOfuser.name}/>
     <div className="profileHeaderContainer">
         <div className="userBox">
-            <h1>My profile</h1>
-            {/* <p>{`Email: ${user.user.email}`}</p> */}
-            {/* <img src={user.user.avatar.url} alt="Profile image" />
-            <p>{`Email: ${user.user.email}`}</p>
-            <Link to="/user/update">Update your profile</Link> */}
-            {/* <h2>{user.user.avatar.url}</h2> */}
+            <h2>My profile</h2>
+            <p>{`Name : ${user.detailsOfuser.name}`}</p>
+            <p>{`Email: ${user.detailsOfuser.email}`}</p>
+            <img src={user.detailsOfuser.avatar.url} alt="Profile image" />
+            
+            <p>{`Joined on :${String(user.detailsOfuser.joinedOn).substring(0,10)}`}</p>
         </div>
         <div className="orders">
             <Link to="/orders"> See your orders</Link>
+        </div>
+        <div className="updateUserContainer">
+        <Link to="/user/update">Update your profile</Link>
         </div>
     </div></>
     

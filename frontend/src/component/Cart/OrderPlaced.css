@@ -1,0 +1,47 @@
+/* OrderPlaced.css */
+.order-placed-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 50px auto;
+    border-radius: 8px;
+  }
+  
+  h2 {
+    color: green; 
+    margin-bottom: 20px;
+  }
+  
+  .icon-link {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    color: #007bff;  /* default color for links, you can change this */
+    text-decoration: none;
+    font-size: 18px;
+  }
+  
+  .icon {
+    margin-right: 8px;
+    font-size: 20px;  /* Icon size. Adjust as needed */
+  }
+  
+  /* Responsive styles for smaller devices */
+  @media (max-width: 480px) {
+    .order-placed-container {
+      padding: 15px;
+      max-width: 100%;
+    }
+  
+    .icon-link {
+      font-size: 16px;
+    }
+  
+    .icon {
+      font-size: 18px;  /* Adjust icon size for mobile */
+    }
+  }
+  

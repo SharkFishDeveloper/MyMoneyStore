@@ -1,0 +1,98 @@
+/* Cart.css */
+
+/* Using relative units like rem (relative to the root font size) and percentages */
+
+.emptyCartContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 55vh;
+    margin: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    color: #999;
+}
+.emptyCartContainer p {
+    margin-left: 20px;
+    margin-top: 12px;
+}
+
+.cartPage {
+    width: 100%;
+    background-color: #e8ece2;
+    padding: 1.5rem; /* Adjusts based on the root font size */
+    box-shadow: 0 0 0rem rgba(0, 0, 0, 0.1);
+    border-radius: 20px; /* Shadow for the cart page */
+}
+
+.cartHeading {
+    display: flex;
+    justify-content: space-between; /* Distributes the items evenly */
+    align-items: center; /* Vertically aligns items in the center */
+    padding: 0.5rem 0; /* Vertical padding of 1rem and no horizontal padding */
+    border-bottom: 1px solid #ddd;
+    font-weight:700;
+}
+
+.cartHeading p {
+    flex: 1; /* Allows each <p> tag to take up equal space */
+    text-align: center; /* Centers the text */
+    font-size: 1rem; /* Adjusts based on the root font size */
+}
+
+.CartProductItem {
+    padding: 1rem 0; /* Vertical padding of 2rem and no horizontal padding */
+}
+
+
+.checkOutContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top: 1px solid #ddd;
+    padding-top: 1rem;
+}
+
+.grossTotal {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 1rem; /* Spacing between gross total and the button */
+}
+
+.title, .grossPrice {
+    flex-basis: 50%; /* Divide the space equally */
+    padding: 0.5rem 2rem; /* Some padding for better visuals */
+}
+.title{
+    font-size: 1.1rem;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.grossPrice {
+    text-align: right; /* Price aligned to the right */
+    font-weight: bold;
+}
+
+.checkOutButton {
+    padding: 0.5rem 2rem;
+    background-color: #409b35; /* You can choose any other color */
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.checkOutButton:hover {
+    background-color: #2c5c2c; /* A slightly darker shade for hover */
+}
+/* Media queries for responsiveness */
+@media screen and (max-width: 768px) {
+    .cartHeading p {
+        font-size: 1rem; /* Reduces font size on smaller screens */
+    }
+}

@@ -15,7 +15,7 @@ const sendToken = async (user,statusCode,res)=>{
     }
     res.status(statusCode).json({
         success:true,
-        user,
+        detailsOfuser:user,
         token
     });
 

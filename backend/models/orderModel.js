@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 
 const orderSchema = new mongoose.Schema({
     userOrderInfo:{
-        address:{type:String,default:null},
-        city:{type:String,default:null},
-        state:{type:String,default:null},
-        country:{type:String,default:null},
-        pinCode:{type:Number,default:null},
-        phoneNo:{type:Number,required:true,
+        address:{type:String,default:null,required:true},
+        city:{type:String,default:null,required:true},
+        state:{type:String,default:null,required:true},
+        country:{type:String,default:null,required:true},
+        pincode:{type:Number,default:null,required:true},
+        phone:{type:String,required:true,
             validate: {
                 validator: function(v) {
                     // Convert the number to a string and check its length
@@ -24,7 +24,7 @@ const orderSchema = new mongoose.Schema({
             price:{type:Number,required:true},
             quantity:{type:Number,default:1},
             image:{type:String,required:true},
-            productId:{type:mongoose.Schema.ObjectId,ref:"Product",required:true}
+            productid:{type:mongoose.Schema.ObjectId,ref:"Product",required:true}
         }
     ],
     userId:{type:mongoose.Schema.ObjectId,ref:"User",required:true},
@@ -32,7 +32,7 @@ const orderSchema = new mongoose.Schema({
         id:{type:String,required:true},
         status:{type:String,required:true},
     },
-    purchasedAt:{type:Date,required:true},
+    purchasedAt:{type:Date,required:true},//! 
     itemsPrice:{type:Number,required:true},
     taxPrice:{type:Number,default:0},
     shippingPrice:{type:Number,default:0},

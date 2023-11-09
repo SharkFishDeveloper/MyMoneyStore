@@ -27,6 +27,7 @@ const Header = ({isAuthenticated}) => {
           </ul>
            {!isAuthenticated &&  <Link className="nav-link " to="/register" style={{margin:8}}>Register</Link>}
            {/* {isAuthenticated &&  <FontAwesomeIcon icon={faUser} size="1x"  className="me-4" onClick={() => <UserAccount user={user}/>} />}   */}
+           <Link to="/cart">Cart</Link>
             <Link to="/search">
             <button className="btn btn-outline-success" type="submit" >
               Search 

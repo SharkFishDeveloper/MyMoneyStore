@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 import Carousel from "react-material-ui-carousel";
 import "./ProductDetails.css";
 import { useSelector, useDispatch } from "react-redux";
@@ -11,6 +11,7 @@ import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import MetaData from '../visible/MetaData';
+import { addItemInCart } from '../../actions/cartActions';
 
 
 
@@ -19,6 +20,26 @@ const ProductDetails = ({match}) => {
     const dispatch = useDispatch();
     const { id } = useParams();
     const {product,loading,error} = useSelector((state)=>state.productDetails);
+
+    const [quantity,setquantity] = useState(1);
+
+    const increaseQuantity = function(){
+      const temp = quantity+1;
+      setquantity(temp);
+    }
+
+    const decreaseQuantity = function(){
+      if(quantity>1){
+      const temp = quantity-1;
+      setquantity(temp);
+      }
+    }
+
+    const addToCartHandler = ()=>{
+      dispatch(addItemInCart({id:id,quantity:quantity}));
+      toast.success("Item added in Cart !");
+    }
+
     useEffect(()=>{
         dispatch(getProductDetails(id));
         if(error){
@@ -70,19 +91,20 @@ const ProductDetails = ({match}) => {
                 {product.real==='true' &&
                 <div className="detailsBlock-d">
                 <div className="detailsBlock-e">
-                  <button >-</button>
-                  <input readOnly type="number" />
-                  <button >+</button>
+                  <button onClick={decreaseQuantity} >-</button>
+                  <input  type="number" value={quantity}/>
+                  <button onClick={increaseQuantity} >+</button>
                 </div>
                 <button
-                  disabled={product.Stock < 1 ? true : false}  
+                  disabled={quantity > product.Stock}
+                  onClick={addToCartHandler} 
                 >
                   Add to Cart
                 </button>
               </div> }
-                
-                <div className="inStock" style={{ color: product.Stock > 0 ? 'green' : 'red' }}>
-                  {product.Stock>0? "In Stock":"Not available"}
+                            
+                <div className="inStock" style={{ color: quantity <= product.Stock? 'green' : 'red' }}>
+                  {quantity <= product.Stock? "In Stock":"Not available"}
                 </div>
 
                 <div className="detailsBlock-f">
@@ -115,3 +137,4 @@ const ProductDetails = ({match}) => {
 }
 
 export default ProductDetails;
+// product.Stock-quantity > 1

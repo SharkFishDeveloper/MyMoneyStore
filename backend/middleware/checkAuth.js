@@ -11,6 +11,7 @@ exports.isAuthenticated = catchAsyncErrors(async(req,res,next)=>{
     console.log(`Reading token form browser ${token}`);
 
 if(!token){
+    //console.log("PLease login first");
     return next(new ErrorHandler("PLease login first",401));
 }
 const decodedId = jwt.verify(token,process.env.JWT_SECRETKEY);

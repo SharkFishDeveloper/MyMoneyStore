@@ -58,3 +58,26 @@
     margin: 0;
     font-weight: bold;
 }
+
+.myaccount{
+    color: black;
+}
+
+.myCart {
+    display: flex;
+    align-items: center; 
+    text-decoration: none; 
+    color: inherit; 
+    padding: 5px 10px; 
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.myCart:hover {
+    background-color: #f5f5f5; 
+}
+
+.cartIcon {
+    margin-right: 8px; 
+    font-size: 20px; 
+}

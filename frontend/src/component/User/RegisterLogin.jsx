@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import { clearErrors } from '../../actions/productActions';
 import Loader from '../Loader/Loader';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 
 const RegisterLogin = () => {
@@ -18,6 +19,22 @@ const RegisterLogin = () => {
     const loginTab = useRef(null);
     const signupTab = useRef(null);
     const switcherTab = useRef(null);
+    const location = useLocation();
+
+    const redirect = location.search ? "/" + location.search.split("=")[1] : "/products";
+    useEffect(()=>{
+      if(error){
+        console.log("Current error:", error);
+        toast.error(error);
+        dispatch(clearErrors());
+      }
+      if(isAuthenticated===true){
+        toast.success("Registered or logged in");
+        navigate(redirect);
+      }
+    },[toast,dispatch,isAuthenticated,error]);
+
+
 
     const switchTabs = (e, tabName) => {
         if (tabName === "Login") {
@@ -68,7 +85,7 @@ const RegisterLogin = () => {
 
 
       const loginSubmit = (e)=>{
-        //e.preventDefault();
+        e.preventDefault();
         dispatch(login({email:loginEmail,password:loginPassword}));
         console.log("Clicked on Log in button !!!");
       }
@@ -77,17 +94,7 @@ const RegisterLogin = () => {
         dispatch(register({email:email,name:name,password:password,avatar:avatar}));
         console.log("Clicked on Sign up button !!!");
       }
-      useEffect(()=>{
-        if(error){
-          toast.error(error);
-          dispatch(clearErrors());
-        }
-        if(isAuthenticated){
-          toast.success("Registered or logged in");
-          navigate("/products");
-        }
-      },[toast,dispatch,error]);
-
+      
 //,isAuthenticated
   return (
     <>{isLoading ? <Loader/> :

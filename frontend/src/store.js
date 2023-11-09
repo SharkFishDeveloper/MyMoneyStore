@@ -1,22 +1,28 @@
-//import {combineReducers,applyMiddleware} from "redux";
 
-//import thunk from "redux-thunk";
-//import {composeWithDevTools} from "redux-devtools-extension";
-//import productDetailsReducer from "./reducers/productReducer.js";
-//import { productReducer, productDetailsReducer } from './reducers/productReducer.js';
-//import productsReducer from "./reducers/productReducer.js";
-//import productDetailsReducer from "./reducers/productReducer.js";
-//import productsReducer from "./reducers/productReducer.js";
 import {configureStore} from "@reduxjs/toolkit";
 import { productDetailsReducer, productsReducer } from "./reducers/productReducer.js";
-import { userReducer } from "./reducers/userReduces.js";
+import { forgotPasswordReducer, profileReducer, userReducer } from "./reducers/userReduces.js";
+import { cartReducer } from "./reducers/cartReducer.js";
+import { orderReducer } from "./reducers/orderReducer.js";
+
+let initialState={
+    cart:{
+        cartItems:localStorage.getItem("cartItems")?JSON.parse(localStorage.getItem("cartItems")):[],
+        shippingInfo: localStorage.getItem("shippingInfo") ? JSON.parse(localStorage.getItem("shippingInfo")) : {}
+    },
+};
 
 const store = configureStore({
     reducer:{
         products: productsReducer.reducer,
         productDetails: productDetailsReducer.reducer,
-        user:userReducer.reducer
-    }
+        user:userReducer.reducer,
+        profile:profileReducer.reducer,
+        forgotpassword:forgotPasswordReducer.reducer,
+        cart:cartReducer.reducer,
+        newOrder:orderReducer.reducer
+    },
+    preloadedState:initialState
 });
 
 

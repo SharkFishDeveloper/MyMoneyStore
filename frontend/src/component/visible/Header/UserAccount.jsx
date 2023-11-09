@@ -6,7 +6,9 @@ import { logout } from '../../../actions/userActions.js';
 import { useDispatch } from 'react-redux';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons';
 import Loader from "../../Loader/Loader.jsx";
+import { Link } from 'react-router-dom';
 
 Modal.setAppElement('#root');
 const UserAccount = ({user}) => {
@@ -40,11 +42,11 @@ const UserAccount = ({user}) => {
         }}
       >
         <div className="userImageContainer">
-        <img src={user.user.avatar.url} alt="Profile img" />
-        <p>Welcome {user.user.name}</p>
+        <img src={user.detailsOfuser.avatar.url} alt="Profile img" />
+        <p>Welcome {user.detailsOfuser.name}</p>
         </div>
         <hr />
-        {user.user.role==="admin" && <button onClick={() => {
+        {user.detailsOfuser.role==="admin" && <button onClick={() => {
           setModalIsOpen(false);
         }}>Dashboard</button>}
         <button onClick={() => {
@@ -61,10 +63,14 @@ const UserAccount = ({user}) => {
            dispatch(logout());      
           setModalIsOpen(false);
         }}>Log out</button>
+        <Link to="/myaccount" className='myaccount'>My account</Link>
+        <Link to="/cart" className='myCart'>
+        <FontAwesomeIcon icon={faCartArrowDown} className="cartIcon" />
+        </Link>
       </Modal>
       </>
     
   )
 }
 
-export default UserAccount
+export default UserAccount;

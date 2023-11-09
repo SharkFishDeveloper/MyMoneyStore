@@ -69,7 +69,7 @@ exports.logOut = catchAsyncErrors(async(req,res,next)=>{
 exports.forgotPassword = catchAsyncErrors(
     async(req,res,next)=>{
         const user = await User.findOne({email:req.body.email});
-
+        
         if(!user){
             return next(new ErrorHandler("User does not exist",404));
         }
@@ -77,9 +77,9 @@ exports.forgotPassword = catchAsyncErrors(
         await user.save({validateBeforeSave:false});
 
         //* Url for reseting password
-        const resetPassUrl = `${req.protocol}://${req.get("host")}/ecom/v1/password/forgot/${resetToken}`;
+        const resetPassUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`;
 
-        const resetPasswordMessage = `To change password click on this link,\n\n ${resetPassUrl}\n\nIf you have not requested this email please ignore it.` 
+        const resetPasswordMessage = `To change password click on this link,\n\n ${resetPassUrl}\n\nIf you have not requested this email, please ignore it.` 
         //console.log(resetPasswordMessage);
         try {
             await sendEmail({
@@ -114,7 +114,7 @@ exports.resetPassword = catchAsyncErrors(
             return next(new ErrorHandler("Token for resetting password is invalid or expired",404));
         }
 
-        if(req.body.password !== req.body.newPassword){
+        if(req.body.password !== req.body.confirmpassword){
             return next(new ErrorHandler("Password does not match",400));
         }
         user.password = req.body.password;
@@ -132,7 +132,7 @@ exports.userDetails = catchAsyncErrors(
         res.status(200).json({
             success:true,
             message:"This is user deatils",
-            user:user
+            detailsOfuser:user
         });
     }
 );
@@ -140,21 +140,31 @@ exports.userDetails = catchAsyncErrors(
 //* update user profile
 exports.updateUserProfile = catchAsyncErrors(
     async(req,res,next)=>{
+        const cloud = await cloudinary.v2.uploader.upload(req.body.avatar,{
+            folder:"avatar",
+            width:150,
+            crop:"scale",
+        });
 
         const newUserData = {
             name:req.body.name,
-            email:req.body.email
+            email:req.body.email,
+            avatar:{
+            public_id: cloud.public_id,
+            url: cloud.secure_url
+        }
         }
 
         const user = await User.findByIdAndUpdate(req.user.id,newUserData,{
             new:true,
             runValidators:true,
-            //useFindAndModify
+            
         });
 
         res.status(200).json({
             success:true,
-            userDetailsUpdated:user
+            userDetailsUpdated:user,
+            updatedSuccessfully:user
         });
     }
 );

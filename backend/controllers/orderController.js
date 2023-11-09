@@ -5,17 +5,17 @@ const ErrorHandler = require("../utils/errorHandler.js");
 exports.createNewOrder = catchAsyncErrors(
     async(req,res,next)=>{
         const {
-            userOrderInfo,
+            shippingInfo,
             orderedItem,
             paymentInfo,
             itemsPrice,
             taxPrice,
             shippingPrice,
-            totalPrice,
+            totalPrice
             } = req.body;
 
             const order = await Order.create({
-                userOrderInfo,
+                userOrderInfo:shippingInfo,
                 orderedItem,
                 paymentInfo,
                 itemsPrice,

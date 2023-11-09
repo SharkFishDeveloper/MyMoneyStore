@@ -1,0 +1,85 @@
+/* Base font size for better rem scaling, optional */
+html {
+    font-size: 16px; /* Or whatever base size you want */
+}
+
+.confirmOrderPage {
+    padding: 2rem;
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+}
+
+.confirmOrderContainer {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    max-width: 600px; /* Limits width while allowing it to be responsive */
+    margin: 0 auto;   /* Centers the container */
+}
+
+.cartItemContainer {
+    margin-top: 1rem;
+    border-top: 1px solid #e5e5e5;
+    padding-top: 1rem;
+}
+
+.cartItemContainer div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.cartItemContainer img {
+    max-width: 60px;  /* Adjust as needed */
+    height: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.orderTotal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+/* ... previous styles ... */
+
+.cartItemContainer a {
+    color: #333;              /* Dark text color */
+    text-decoration: none;    /* Remove underline */
+    font-weight: bold;        /* Make the font bold */
+    margin-left: 1rem;        /* Add a little spacing */
+    flex-grow: 1;             /* Allow the link to grow and push the other elements apart */
+    overflow: hidden;         /* Hide overflowing text */
+    white-space: nowrap;      /* Prevent text from wrapping */
+    text-overflow: ellipsis;  /* Add ellipsis for overflowing text */
+}
+
+.cartItemContainer a:hover {
+    color: #91a9c2;           
+}
+
+.confirmButton {
+    padding: 0.5rem 1rem;
+    background-color: #333;  /* Dark button, adjust as you prefer */
+    color: #fff;
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.confirmButton:hover {
+    background-color: #555;  /* Slightly lighter shade on hover */
+}
+
+/* Additional responsiveness for smaller screens */
+@media (max-width: 480px) {
+    .confirmOrderContainer {
+        padding: 1rem;
+    }
+}

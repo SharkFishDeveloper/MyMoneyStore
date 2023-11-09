@@ -1,0 +1,62 @@
+/* CartItem.css */
+
+.CartProductCard {
+    position: relative;
+    display: flex;
+    align-items: center; /* Align items vertically in the center */
+    border: 1px solid #ddd;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.CartProductCard img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.imageAndName {
+    flex-grow: 1; /* Provides more space for product name */
+    margin-left: 1rem; /* Adds space between image and name */
+    text-align: center;
+    margin-right: 1.5rem;
+}
+
+.imageAndName a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    margin-left: 1.5rem;
+}
+
+.CartProductCard img,
+.imageAndName,
+.itemQuantity,
+.itemPrice {
+    flex-basis: calc(33.33% - 10px);
+    margin-left: 10px;  /* Roughly divide by three (adjust for margins) */
+}
+
+.itemQuantity, 
+.itemPrice {
+    text-align: center;
+}
+
+.removeFromCart {
+    position: absolute; 
+    top: 10px; 
+    right: 10px; 
+    color: red;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.7); 
+    padding: 0.2rem 0.5rem; 
+    border: 1px solid red; 
+    border-radius: 5px; 
+}
+
+.removeFromCart:hover {
+    transition: all 0.5s ease;  
+    transform: scale(1.1); 
+}
