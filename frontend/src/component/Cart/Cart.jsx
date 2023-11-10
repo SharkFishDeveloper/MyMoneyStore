@@ -13,9 +13,19 @@ const Cart = () => {
     const loggedUser = useSelector((state)=>state.user);
     const {cartItems} = useSelector((state)=>state.cart);
     let cartsum=0;
-    cartItems.forEach(element => {
-        cartsum += (element.price*element.quantity);
-    });
+    // cartItems.forEach((element) => {
+    //     cartsum += (element.price*element.quantity);
+    // });
+    if (typeof cartItems === 'object' && cartItems !== null) {
+        console.log('cartItems is an object:', cartItems);
+      }
+    if (Array.isArray(cartItems)) {
+        cartItems.forEach((element) => {
+          cartsum += element.price * element.quantity;
+        });
+      } else {
+        console.error('cartItems is not an array:', cartItems);
+      }
 
     const checkOutHandler = ()=>{       
             navigate("/register?redirect=shipping");       

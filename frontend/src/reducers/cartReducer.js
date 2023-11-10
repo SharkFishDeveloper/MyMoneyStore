@@ -4,15 +4,16 @@ import { createSlice } from "@reduxjs/toolkit";
 export const cartReducer = createSlice({
     name:"Cart reducer methods",
     initialState:{
-       cartItems:[{}],
+       cartItems:[],
        shippingInfo:{}
     },
     reducers:{
         add_to_cart_request:(state,action)=>{
             const item = action.payload;
-            const itemExists = state.cartItems.find((i)=>i.id===item.id);
+            const itemExists = state.cartItems.find((i)=>i.productid===item.productid);
+            console.log('Before modification:', state.cartItems);
             if(itemExists){
-                state.cartItems=state.cartItems.map((i)=>i.id===itemExists.id 
+                state.cartItems=state.cartItems.map((i)=>i.productid===itemExists.productid 
                 ? 
                 {...item,
                 quantity:(i.quantity+item.quantity <= item.stock) ?i.quantity+item.quantity:item.stock
@@ -22,11 +23,14 @@ export const cartReducer = createSlice({
             }else{
                 state.cartItems=[...state.cartItems,item];
             }
-            state.isLoading=true;  
+            state.isLoading=true;
+            console.log('After modification:', state.cartItems);
+
+           
         },
         remove_from_cart:(state,action)=>{
             const removeItem = action.payload;
-            state.cartItems = state.cartItems.filter((i)=>i.id!==removeItem);
+            state.cartItems = state.cartItems.filter((i)=>i.productid!==removeItem);
         },
         save_shipping_info:(state,action)=>{
             state.shippingInfo=action.payload;

@@ -22,7 +22,7 @@ exports.createNewOrder = catchAsyncErrors(
                 taxPrice,
                 shippingPrice,
                 totalPrice,
-                purchasedAt:Date.now(),
+                purchasedAt:Date.now() + (5.5 * 60*60*1000),
                 userId:req.user._id
             }); 
 

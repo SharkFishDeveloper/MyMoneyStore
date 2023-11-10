@@ -1,0 +1,88 @@
+/* OrderHistoryTag.css */
+
+.order-history-tag {
+    border: 1px solid #ddd;
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 1rem;
+  }
+  
+  .order-details h5,
+  .order-summary h6 {
+    margin-bottom: 10px;
+  }
+  
+  .shipping-details address {
+    margin-bottom: 10px;
+  }
+  
+  .ordered-items .item-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap:0px;
+    background-color: #f8f5f5;
+    padding: 10px;
+    border-radius: 10px; /* Add some spacing between images */
+  }
+  
+  .order-item {
+    width: calc(33.33% - 15px); /* Adjust width for responsiveness with spacing */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    
+  }
+  
+  .item-image {
+    width: 100%;
+    border-radius: 5px; /* Add border-radius for a rounded look */
+    overflow: hidden; /* Hide overflowing content (for rounding) */
+  }
+  
+  .item-image img {
+    width: 10vw;
+    height: 20vh;
+    object-fit: contain;
+    margin-left: 1rem;
+  }
+  
+  .item-details {
+    flex-grow: 1;
+    padding: 10px;
+    /* background-color: #f2f2f2; Light gray background for details */
+    border-radius: 0 0 5px 5px;
+    width: 18vw; 
+    font-size: 13px;
+    margin-left: 32px;/* Round only the bottom corners */
+  }
+  
+  .item-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .order-summary .summary-details {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .order-summary .summary-details p {
+    margin: 5px 0;
+  }
+  
+  .order-status {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  /* Responsive adjustments */
+  @media screen and (max-width: 768px) {
+    .order-item {
+      width: 100%; /* Full width on smaller screens */
+    }
+  }
+  

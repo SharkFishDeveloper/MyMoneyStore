@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 const CartItem = ({item,index}) => {
     const dispatch = useDispatch();
     const removeFromCart = ()=>{
-        dispatch(removeProductFromCart(item.id));
+        dispatch(removeProductFromCart(item.productid));
     };
 
   return (
@@ -17,7 +17,7 @@ const CartItem = ({item,index}) => {
         <span className="itemIndex">{`${index + 1}.)`}</span>  
         <div className='imageAndName'>
         <img src={item.image} />
-        <Link to={`/product/${item.id}`}>{item.name}</Link>
+        <Link to={`/product/${item.productid}`}>{item.name}</Link>
         
         </div>
 

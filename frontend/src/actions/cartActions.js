@@ -6,35 +6,38 @@ import axios from "axios";
 export const addItemInCart = createAsyncThunk("addtocart",async(cartBody ,thunkAPI)=>{
 
         const {id,quantity} = cartBody;
-        const {data} = await axios.get(`http://localhost:4000/ecom/v1/product/${id}`);
+        try {
+            const { data } = await axios.get(`http://localhost:4000/ecom/v1/product/${id}`);
+        
+            const itemDetails = {
+              productid: data.product._id,
+              name: data.product.name,
+              price: data.product.price,
+              stock: data.product.Stock,
+              image: data.product.images[0].url,
+              quantity,
+            };
+        
+            thunkAPI.dispatch(add_to_cart_request(itemDetails));
+             // Retrieve existing cartItems from localStorage
+    let existingCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 
-        const itemDetails = { 
-            productid:data.product._id,    
-            name:data.product.name,
-            price:data.product.price,
-            stock:data.product.Stock,
-            image:data.product.images[0].url,
-            quantity
-        };
+    // Ensure existingCartItems is an array
+    if (!Array.isArray(existingCartItems)) {
+        existingCartItems = [];
+    }
 
-        thunkAPI.dispatch(add_to_cart_request(itemDetails));
-        console.log(id);
+    // Add the new item to the existing cartItems
+    existingCartItems.push(itemDetails);
 
-        const cartItems = thunkAPI.getState().cart.cartItems;
-
-        // let cartItems = localStorage.getItem('cartItems')?JSON.parse(localStorage.getItem('cartItems')):[];
-
-        // const findExistingIndex = cartItems.findIndex(item => 
-        //     item.id===itemDetails.id
-        // );
-
-        // if(findExistingIndex >=0){
-        //     cartItems[findExistingIndex].quantity += itemDetails.quantity;
-        // }else{
-        //     cartItems.push(itemDetails);
-        // }
-
-        localStorage.setItem("cartItems",JSON.stringify(cartItems));
+    // Save the updated cartItems back to localStorage
+    localStorage.setItem("cartItems", JSON.stringify(existingCartItems));
+            // const cartItems = thunkAPI.getState().cart.cartItems;
+            // localStorage.setItem("cartItems", JSON.stringify(itemDetails));
+          } catch (error) {
+            // Handle errors, e.g., display an error message or dispatch an error action.
+            console.error("Error adding item to cart:", error);
+          }
     }
 );
 

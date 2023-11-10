@@ -4,6 +4,7 @@ import { clearHistoryErrors, myOrdersAction } from '../../actions/orderAction';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../Loader/Loader.jsx';
 import { toast } from 'react-toastify';
+import OrderHistoryTag from "./OrderHistoryTag.jsx";
 
 const MyOrders = () => {
     const navigate = useNavigate();
@@ -35,7 +36,11 @@ const MyOrders = () => {
         orderHistoryLoading? <Loader/>:
         <>
         <div>
-            Order History
+            {orderHistory.slice().reverse().map((order,index)=>(
+                <>
+                <p>Order {index + 1}</p>
+                <OrderHistoryTag order={order} key={order._id} /></>            
+            ))}
         </div>
         </>
     }
